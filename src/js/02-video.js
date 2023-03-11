@@ -12,28 +12,22 @@ player.getVideoTitle().then(function (title) {
 });
 
 const onPlay = function (time) {
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(time.seconds)
-  );
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(time.seconds));
 };
 player.on('timeupdate', throttle(onPlay, 1000));
 
 const savedTime = localStorage.getItem(STORAGE_KEY);
+if (savedTime) {
+  player
+    .setCurrentTime(savedTime)
+    .then(function (seconds) {})
+    .catch(function (error) {
+      switch (error.name) {
+        case 'RangeError':
+          break;
 
-player
-  .setCurrentTime(savedTime)
-  .then(function (seconds) {
-    // seconds = the actual time that the player seeked to
-  })
-  .catch(function (error) {
-    switch (error.name) {
-      case 'RangeError':
-        // the time was less than 0 or greater than the video’s duration
-        break;
-
-      default:
-        // some other error occurred
-        break;
-    }
-  });
+        default:
+          break;
+      }
+    });
+}
