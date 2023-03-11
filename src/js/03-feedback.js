@@ -9,8 +9,6 @@ const inputEmailRef = document.querySelector('input');
 
 formRef.addEventListener('submit', onFormSubmit);
 formRef.addEventListener('input', throttle(onTextareaInput, 500));
-// textareaRef.addEventListener('input', throttle(onTextareaInput, 500));
-// inputEmailRef.addEventListener('input', throttle(onTextareaInput, 500));
 
 populateTextareaData();
 
