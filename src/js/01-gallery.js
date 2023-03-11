@@ -24,14 +24,8 @@ function createImageGalleryMarkup(galleryItems) {
     })
     .join('');
 }
-galleryRef.addEventListener('click', event => {
-  event.preventDefault();
 
-  if (event.target.nodeName !== 'IMG') {
-    return;
-  }
-  const simplelightbox = new SimpleLightbox('.gallery a', {
+ const simplelightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
   });
-});
